@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxelChat</title>
+    
+    <script>
+        function enviarImagen () {
+            const inputImg = document.getElementById('inputImg');
+            console.log('INPUT IMG: ' );
+            console.log(inputImg)
+            
+            const img = inputImg.files[0];
+            console.log('IMAGEN: ');
+            console.log(img)
+            
+
+            const formData = new FormData();
+            formData.append('img', img);
+
+            // Axios -> this.axios.post()
+            fetch('http://localhost:3000/img', {
+                mode: 'cors',
+                method: 'POST',
+                body: formData
+            })
+        }
+    </script>
+
+
+    <script type="module">
+        import {io} from 'https://cdn.socket.io/4.3.2/socket.io.esm.min.js'    
+                
+        const form = document.getElementById('form')
+        const input = document.getElementById('input') 
+        const messages = document.getElementById('messages')
+        
+        const getUsername = async ()=>{
+            const username = localStorage.getItem('username')
+            if (username){
+                console.log(`User existed ${username}`)
+                return username
+            }
+
+            const res = await fetch('https://random-data-api.com/api/users/random_user')
+            const {username: randomUsername} = await res.json()
+
+            localStorage.setItem('username', randomUsername)
+            return randomUsername
+        }
+
+        const socket = io({
+            auth:{ username :await getUsername(),
+            serverOsffet: 0
+            }
+        })
+
+        socket.on('chat message', (msg, serverOsffet, username) =>{
+            const item = `<li>
+                <p>${msg}</p>
+                <small>${username}</small>
+                </li>`
+            messages.insertAdjacentHTML('beforeend',item)
+            socket.auth.serverOsffet = serverOsffet
+            messages.scrollTop = messages.scrollHeight
+        })
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+
+            if (input.value){
+                socket.emit('chat message', input.value) //usuario a server
+                input.value=''
+            }
+
+        })
+    </script>
+    
+    <style>
+        *,
+        *::before,
+        *::after{
+            box-sizing: border-box;
+        }
+        :root{
+            color-scheme: Light dark ;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            display: grid;
+            place-content: center;
+            height: 100vh;
+            padding: 36px 36px 100px 36px;
+            grid-template-rows: 1fr;
+
+        
+        }
+
+        #messages{
+            list-style-type: none;
+            margin:0 ;
+            padding: 0;
+            overflow-y: scroll;
+            height: 100%;
+            scroll-behavior: smooth;
+            padding-bottom: 45px;
+        }
+        #messages > li{
+            padding: .5rem 1rem;
+        }
+        #messages > li:nth-child(odd){
+            background: #000;
+        }
+
+        #chat{
+            border: 1px solid #CCC;
+            border-radius: 4px;
+            overflow: hidden;
+            width: 350px;
+            height: 100%;
+            position: relative;
+        }
+
+        #form{
+            bottom: 0;
+            display: flex;
+            height: 48px;
+            left: 0;
+            padding: 4px;
+            position: absolute;
+            right: 0;
+        }
+        #input {
+            border-radius:9999px;
+            border: 1px solid #eee;
+            flex: 1;
+            margin: 4px;
+            padding: 0 8px;
+        }
+
+        #input:focus{
+            outline: 0;
+
+        }
+        #form > button{
+            background: #09f;
+            color: #fff;
+            border: 0;
+            margin: 4px;
+            border-radius: 4px;
+        }
+        #form > button:hover{
+            background: #0cf;
+            
+        }
+
+        .input-img {
+            margin-top: 2rem;
+            border-radius:9999px;
+            border: 1px solid #eee;
+            flex: 1;
+            margin: 4px;
+            padding: 0 8px;
+        }
+
+        .input-img:focus{
+            outline: 0;
+
+        }
+        
+        .btn-img {
+            background: #09f;
+            color: #fff;
+            border: 0;
+            margin: 4px;
+            border-radius: 4px;
+        }
+
+        .btn-img:hover{
+            background: #0cf;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <section id="chat">
+        <ul id ="messages"></ul>
+        <form id="form">
+            <input type="text" name="message" id="input" placeholder="Ingresar link"
+            autocomplete="off"/> 
+            <button type="submit"> Enviar</button>
+        </form>
+    </section>
+
+    <div>
+        <input class="input-img" name="image" id="inputImg" type="file" placeholder="Subir imagen" />
+        <button onclick="enviarImagen()" class="btn-img">Subir</button>
+    </div>
+</body>
+</html>
