@@ -6,17 +6,18 @@ export default function ({ app }) {
       dark: false,
       themes: {
         light: {
-          primary: '#170743',
-          secondary: '#562496',
-          accent: '#B7C6E3',
+          primary: '#240046',
+          secondary: '#10002B',
+          persian: '#3C096C',
+          tekhelet: '#5A189A',
+          french: '#7B2CBF',
+          amethyst: '#9D4EDD',
+          heliotrope: '#C77DFF',
+          mauve: '#E0AAFF',
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: '#E57373',
-          success: colors.green.darken3,
-          persian: '#2A9D8F',
-          saffron: '#E9C46A',
-          burnt: '#E76F51',
-          purple: '#2B0F6B'
+          success: colors.green.darken3
         }
       }
     },

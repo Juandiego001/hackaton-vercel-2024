@@ -1,14 +1,12 @@
 <template lang="pug">
-v-app
-  Nuxt
+div Sign In Page
 </template>
 
 <script>
 export default {
-  name: 'DefaultLayout',
+  name: 'SignInPage',
   data () {
-    return {
-    }
+    return {}
   }
 }
 </script>
