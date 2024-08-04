@@ -1,3 +1,4 @@
+import '@mdi/font/css/materialdesignicons.css'
 import colors from 'vuetify/es5/util/colors'
 
 export default function ({ app }) {
