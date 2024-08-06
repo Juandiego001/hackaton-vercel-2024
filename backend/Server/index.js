@@ -22,7 +22,7 @@ async function startServer() {
         await initializeServer(app);
         await Count(app);
     } catch (err) {
-        console.error("Failed to initialize server:", err);
+        console.error('Failed to initialize server:', err);
     }
 
     app.listen(port, () => {
