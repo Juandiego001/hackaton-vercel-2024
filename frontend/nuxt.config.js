@@ -20,6 +20,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    'plugins/axios',
+    'plugins/mixin-global'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,7 +40,9 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    // https://github.com/microcipcip/cookie-universal/tree/master/pack>
+    ['cookie-universal-nuxt', { alias: 'cookies' }]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -47,7 +51,7 @@ export default {
     proxy: true
   },
   proxy: {
-    '/api': process.env.API_URL
+    '/api/': process.env.API_URL
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

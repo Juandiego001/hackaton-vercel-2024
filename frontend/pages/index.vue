@@ -6,6 +6,16 @@ v-row.secondary.mx-0.my-0
         .text-h5 ISuggestU
   v-col(cols="12")
     v-row.justify-center
+      //- Card con los resultados
+      v-col(v-if="result" cols="12")
+        v-card.rounded-xl.primary.mx-auto(dark max-width="800px" elevation=20)
+          v-card-title.justify-center Resultados de análisis
+          v-card-text
+            v-form.text-center
+              v-textarea(label="lorem" readonly)
+              v-btn.primary Finalizar
+
+      //- Card to add images
       v-col(cols="12" md="6")
         v-card.rounded-xl.primary.mx-auto(dark max-width="500px" elevation=20)
           v-card-title.justify-center Agregar imágenes
@@ -15,6 +25,8 @@ v-row.secondary.mx-0.my-0
               filled prepend-icon="" small-chips
               append-icon="mdi-upload" clearable)
               v-btn.primary Iniciar
+
+      //- Card to add links
       v-col(cols="12" md="6")
         v-card.rounded-xl.primary.mx-auto(dark max-width="500px" elevation=20)
           v-card-title.justify-center Agregar enlace
@@ -35,6 +47,11 @@ v-row.secondary.mx-0.my-0
 export default {
   name: 'IndexPage',
   layout: 'empty',
+  data () {
+    return {
+      result: ''
+    }
+  },
   head () {
     return {
       title: 'Home'
