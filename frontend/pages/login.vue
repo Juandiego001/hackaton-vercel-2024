@@ -5,11 +5,11 @@ v-card(dark color="primary" max-width="450px")
     v-form.white--text
       v-row
         v-col(cols="12")
-          v-text-field(v-model="form.username" type="username"
+          v-text-field(v-model="form.email" type="email"
           label="Ingresa tu correo" hide-details="auto"
           background-color="secondary" filled)
         v-col(cols="12")
-          v-text-field(v-model="form.password"
+          v-text-field(v-model="form.pasword"
           label="Ingresa tu contraseña" type="password"
           background-color="secondary" hide-details="auto" filled)
         v-col.text-right(cols="12")

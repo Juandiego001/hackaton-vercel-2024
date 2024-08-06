@@ -8,7 +8,7 @@ import { createClient } from '@libsql/client';
 
 // const port = process.env.PORT ?? 4000;
 
-export default async function initializeServer(app,port) {
+export default async function initializeServer(app) {
     // const app = express();
     
     const upload = multer({ dest: 'uploads/' });
