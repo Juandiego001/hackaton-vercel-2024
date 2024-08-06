@@ -1,9 +1,13 @@
 <template lang="pug">
-//- v-snackbar(v-model="snackbar" multi-line
-//- :color="$store.state.snackbar.type") {{ $store.state.snackbar.text }}
-//-   template(#action)
-//-     v-btn(icon @click="snackbar=false")
-//-       v-icon mdi-close
+v-app
+  Nuxt
+
+  //- Snackbar
+  v-snackbar(v-model="snackbar" multi-line
+  :color="$store.state.snackbar.type") {{ $store.state.snackbar.text }}
+    template(#action)
+      v-btn(icon @click="snackbar=false")
+        v-icon mdi-close
 </template>
 
 <script>
