@@ -8,10 +8,10 @@ v-card(dark color="primary" max-width="550px")
           v-text-field(v-model="form.name" type="text"
           label="Ingresa tu nombre" hide-details="auto"
           background-color="secondary" filled)
-        v-col(cols="12")
-          v-text-field(v-model="form.email" type="email"
-          label="Ingresa tu correo" hide-details="auto"
-          background-color="secondary" filled)
+        //- v-col(cols="12")
+        //-   v-text-field(v-model="form.email" type="email"
+        //-   label="Ingresa tu correo" hide-details="auto"
+        //-   background-color="secondary" filled)
         v-col(cols="12" md="6")
           v-text-field(v-model="form.pasword"
           label="Ingresa tu contraseña" type="password"
@@ -37,7 +37,7 @@ export default {
     return {
       form: {
         name: '',
-        email: '',
+        // email: '',
         text: '',
         password: '',
         confirmPassword: ''
