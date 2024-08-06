@@ -6,7 +6,8 @@ import cookieParser from 'cookie-parser'
 
 const app = express()
 app.use(express.json())
-app.use(cookieParser())
+app.use(cookieParser()) 
+
 app.use((req,res, next)=>{
     console.log('PASA POR AQUI O Q TRANZA')
     const token = req.cookies.access_token
@@ -20,6 +21,7 @@ app.use((req,res, next)=>{
     console.log('LLEGA A LA FUNCIÓN SIGUIENTE')
     next()
 })
+
 
 app.get('/api/', (req,res) => {
    
